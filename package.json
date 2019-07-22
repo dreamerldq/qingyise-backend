@@ -1,0 +1,35 @@
+{
+  "name": "koa-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "busboy": "^0.3.1",
+    "chalk": "^2.4.2",
+    "copy-webpack-plugin": "^5.0.3",
+    "ejs": "^2.6.2",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.2.0",
+    "pg": "^7.11.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.10.1",
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "ISC"
+}
