@@ -1,16 +1,12 @@
-import Sequelize from 'sequelize'
-const User = global.sequelize.define('user', {
-    // 属性
-    firstName: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    lastName: {
-      type: Sequelize.STRING
-      // allowNull 默认为 true
-    }
-  }, {
-    // 参数
-  });
-
-  export default User
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('User', {
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
+    email: DataTypes.STRING
+  }, {});
+  User.associate = function(models) {
+    // associations can be defined here
+  };
+  return User;
+};
