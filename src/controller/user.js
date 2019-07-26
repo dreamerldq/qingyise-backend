@@ -1,9 +1,7 @@
 
-// import User from '../models/User'
 import db from '../models'
 
 const createUser = () => {
-    console.log("DATABASE",db)
     return async (ctx) => {
     const firstName = 'wang'
     const lastName = 'shuai'
@@ -23,6 +21,12 @@ const getUsers = () => {
           ctx.body = JSON.stringify(users, null, 4)
     }
 }
+
+// const deleteUser = () => {
+//     return async (ctx) => {
+//         const user = await db.User.findOne()
+//     }
+// }
 
 export {
     createUser,

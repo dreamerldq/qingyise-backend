@@ -5,6 +5,8 @@
   "main": "webpack.config.js",
   "dependencies": {
     "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
@@ -16,11 +18,14 @@
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
+    "koa-session": "^5.12.2",
     "koa-static": "^5.0.0",
     "koa-views": "^6.2.0",
+    "nodemon": "^1.19.1",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.10.1",
+    "sequelize-cli": "^5.5.0",
     "webpack": "^4.36.1",
     "webpack-cli": "^3.3.6",
     "webpack-node-externals": "^1.7.2"
