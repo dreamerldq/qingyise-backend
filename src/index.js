@@ -6,14 +6,77 @@ import path  from'path'
 import views  from'koa-views'
 import Sequelize from 'sequelize'
 import session from 'koa-session'
-
+import { ApolloServer, gql } from 'apollo-server-koa';
+import db from './models/index'
 import Router from 'koa-router'
 import endTime from './middleware/endtime'
 import router from './routes/index'
+import user from './routes/user';
 
 const { Model } = Sequelize
 
+
+const typeDefs = gql`
+  type Query {
+    hello: String,
+    getUsers: [User]!
+  }
+  type Mutation {
+    addUser(firstName: String, lastName:String, email:String): Response!
+  }
+  type User {
+      firstName: String,
+      lastName: String,
+      id: ID,
+      email: String
+  }
+  type Article {
+      title: String,
+      subTitle: String,
+      content: String
+  }
+  type Response{
+      success: Boolean!,
+      getUsers:[User]!
+  }
+`;
+
+
+
+
+// Provide resolver functions for your schema fields
+const resolvers = {
+  Query: {
+    hello: () => 'Hello world!',
+    getUsers: async () => {
+        const users = await db.User.findAll({})
+        // console.log('USES', users)
+        return users
+    }
+  },
+  Mutation: {
+    addUser: async (_, {firstName, lastName, email}) => {
+        console.log(firstName, lastName, email);
+        const user =  await  db.User.create({
+            firstName,
+            lastName,
+            email,
+        })
+        console.log("这是新创建的user",user)
+        const users = await db.User.findAll({})
+        
+        return {
+            success: true,
+            getUsers:users
+        }
+    },
+}
+};
+ 
+const server = new ApolloServer({ typeDefs, resolvers });
+
 const app = new Koa();
+server.applyMiddleware({ app });
 app.keys = ['this is sercet keys'];
 
 app.use(session({
@@ -36,5 +99,6 @@ app.use(koaStatic(
 app.use(router.routes()).use(router.allowedMethods())
 
 app.listen(3000, ()=>{
-    console.log(`server is running at ${chalk.green('http://localhost:3000')}` )
+    console.log(`server is running at ${chalk.green('http://localhost:3000')}
+    graphql is Server ready at http://localhost:4000${server.graphqlPath}` )
 });
